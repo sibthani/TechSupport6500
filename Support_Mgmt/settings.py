@@ -58,7 +58,7 @@ ROOT_URLCONF = 'Support_Mgmt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ '/mnt/c/Users/MR.NGULUBE/Documents/T_Support/Support_Project/Support_Mgmt/supportapp/tamplates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +68,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
+    }
 ]
 
 WSGI_APPLICATION = 'Support_Mgmt.wsgi.application'
