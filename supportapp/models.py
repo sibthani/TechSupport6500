@@ -78,7 +78,7 @@ class Issue_Catgry(models.Model):
 
 # Issues are defined by codes LPTOP - Laptop issues
 class Issue(models.Model):
-    issue_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    issue_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=True)
     issue_code = models.ForeignKey("Issue_Catgry", on_delete=models.CASCADE)
     username = models.ForeignKey("CoachUser", on_delete=models.CASCADE)
     cluster_code = models.ForeignKey("Cluster", on_delete=models.CASCADE, null=True)
