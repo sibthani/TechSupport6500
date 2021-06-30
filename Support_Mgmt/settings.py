@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'supportapp.apps.SupportappConfig',
 ]
 
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'Support_Mgmt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ '/mnt/c/Users/MR.NGULUBE/Documents/T_Support/Support_Project/Support_Mgmt/supportapp/tamplate'],
+        'DIRS': [ '/mnt/c/Users/MR.NGULUBE/Documents/T_Support/Support_Project/Support_Mgmt/supportapp/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'supportapp-home'
