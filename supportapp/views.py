@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 #from django.contrib.auth.decorators.csrf import csrf_exempt
 #from django.views.decorators.csrf import csrf_exempt
-
+from django.http import HttpResponse
 
 
 posts = [
@@ -26,8 +26,10 @@ posts = [
 
 def home(request):
     context = {
-        'posts': posts
-             }
+       'posts': posts
+            }
     return render(request, 'supportapp/home.html', context)
 
 
+#def home(request):
+  #return HttpResponse(" HI  ")

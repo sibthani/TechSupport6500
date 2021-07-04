@@ -59,7 +59,7 @@ ROOT_URLCONF = 'Support_Mgmt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ '/mnt/c/Users/MR.NGULUBE/Documents/T_Support/Support_Project/Support_Mgmt/supportapp/template'],
+        'DIRS': ['/mnt/c/Users/MR.NGULUBE/Documents/T_Support/Support_Project/Support_Mgmt/supportapp/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,3 +127,4 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'supportapp-home'
+LOGOUT_REDIRECT_URL = 'supportapp-home'
