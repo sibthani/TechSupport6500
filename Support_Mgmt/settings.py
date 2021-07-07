@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'django_extensions',
     'supportapp.apps.SupportappConfig',
 ]
 
@@ -128,3 +129,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'supportapp-home'
 #LOGOUT_REDIRECT_URL = 'supportapp-home'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

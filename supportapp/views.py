@@ -1,6 +1,7 @@
 from django.shortcuts import render , redirect
 from .forms import IssueForm
 from django.contrib import messages
+#from django.contrib.auth.decorators import login_required
 #from django.http import HttpResponse
 
 
@@ -30,7 +31,7 @@ posts = [
  #           }
  #   return render(request, 'supportapp/home.html', context)
 
-
+#@login_required
 def home(request):
    # context = {}
     if request.method == 'POST':
