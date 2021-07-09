@@ -127,7 +127,7 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'supportapp-home'
+LOGIN_REDIRECT_URL = 'home'
 #LOGOUT_REDIRECT_URL = 'supportapp-home'
 
 GRAPH_MODELS = {
