@@ -1,8 +1,9 @@
 from django.shortcuts import render , redirect
 from .forms import IssueForm
+from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-#from django.http import HttpResponse
+#from django.http import HttpResponse4
 
 
 posts = [
@@ -56,3 +57,11 @@ def form(request):
 
 #def home(request):
     #return HttpResponse("hi")
+
+def issuesrpt(request):
+
+    context = {
+        'centr_issue': Issue.objects.all(),
+    }
+
+    return render(request,'supportapp/issue-report.html', context)

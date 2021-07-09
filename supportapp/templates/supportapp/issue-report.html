@@ -1,0 +1,41 @@
+{% extends "supportapp/base.html" %}
+    {% load crispy_forms_tags  %}
+      {% block content %}
+      <div class="content-section">
+
+<h2>Center Issues</h2>
+  <p>Issues from the centers</p>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Issue Code</th>
+        <th>Username</th>
+        <th>Cluster</th>
+        <th>Center</th>
+        <th>Description</th>
+        <th>Urgent</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for isue in centr_issue %}
+      <tr>
+            <td>{{ isue.issue_code }}</td>
+            <td>{{ isue.username }}</td> 
+            <td>{{ isue.cluster_code }}</td>
+            <td>{{ isue.center_code }}</td>
+            <td>{{ isue.issue_description }}</td>
+            <td>{{ isue.urgent }}</td>
+            <td>{{ isue.issue_date }}</td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+        
+   </div>
+    {% endblock content %}
+
+
+
+     
