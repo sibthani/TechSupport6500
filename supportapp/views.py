@@ -40,23 +40,21 @@ def form(request):
    # context = {}
     if request.method == 'POST':
        form = IssueForm(request.POST)
-
        if form.is_valid():
-          username = form.cleaned_data.get('username')
-          messages.success(request, f'Tech Support  Response form submitted {username}!')
-          return redirect('supportapp-home')
+          new_issue = form.save(commit=False)
+          new_issue.save()
+          # username = form.cleaned_data.get('username')
+          # messages.success(request, f'Tech Support  Response form submitted {username}!')
+          return redirect('form')
     else :
          form = IssueForm()
-    #if form.is_valid():
-      #form.save()
 
-    #context ['form'] = form  
+    context = {
+        'form': form,
+    }
   
-    return render(request, 'supportapp/form.html', {'form': form })
+    return render(request, 'supportapp/form.html', context)
 
-
-#def home(request):
-    #return HttpResponse("hi")
 
 def issuesrpt(request):
 
