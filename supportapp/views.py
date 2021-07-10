@@ -1,8 +1,9 @@
 from django.shortcuts import render , redirect
 from .forms import IssueForm
+from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-#from django.http import HttpResponse
+#from django.http import HttpResponse4
 
 
 posts = [
@@ -28,6 +29,7 @@ posts = [
 def home(request):
     context = {
        'posts': posts
+       
             }
 
     return render(request, 'supportapp/index.html', context)
@@ -43,7 +45,7 @@ def form(request):
        if form.is_valid():
           username = form.cleaned_data.get('username')
           messages.success(request, f'Tech Support  Response form submitted {username}!')
-          return redirect('supportapp-home')
+          return redirect('home')
     else :
          form = IssueForm()
     #if form.is_valid():
@@ -56,3 +58,11 @@ def form(request):
 
 #def home(request):
     #return HttpResponse("hi")
+
+def issuesrpt(request):
+
+    context = {
+        'centr_issue': Issue.objects.all(),
+    }
+
+    return render(request,'supportapp/issue-report.html', context)
