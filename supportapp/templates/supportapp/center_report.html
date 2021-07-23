@@ -1,0 +1,35 @@
+{% extends "supportapp/base.html" %}
+    {% load crispy_forms_tags  %}
+      {% block content %}
+      <div class="content-section">
+
+<h2> Center </h2>
+  <p>Centers in a Cluster</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th> Cluster  Code</th>
+        <th>Center  Code</th>
+        <th>Center  Name</th>
+        <th>Center Address </th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for cnt in center %}
+      <tr>
+            <td>{{ cnt.cluster_code }}</td>
+            <td>{{ cnt.center_code }}</td> 
+            <td>{{ cnt.center_name }}</td>
+            <td>{{ cnt.center_address }}</td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+        
+   </div>
+    {% endblock content %}
+
+
+
+     

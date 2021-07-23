@@ -1,0 +1,45 @@
+{% extends "supportapp/base.html" %}
+    {% load crispy_forms_tags  %}
+      {% block content %}
+      <div class="content-section">
+
+<h2> Coach Report </h2>
+  <p> Coaches in  Country </p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th> First Name</th>
+        <th> Last Name </th>
+        <th> Username </th>
+        <th> Cluster Code </th>
+        <th> Center Code </th>
+        <th> Staff Code </th>
+        <th> Email </th>
+        <th> Gender </th>
+        <th> Phone Number </th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for cch in coach %}
+      <tr>
+            <td>{{ cch.first_name }}</td>
+            <td>{{ cch.last_name }}</td> 
+            <td>{{ cch.username }}</td>
+            <td>{{ cch.cluster_code }}</td>
+            <td>{{ cch.center_code }}</td>
+            <td>{{ cch.staff_code }}</td>
+            <td>{{ cch.email }}</td>
+            <td>{{ cch.gender }}</td>
+            <td>{{ cch.phone_number }}</td>
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+        
+   </div>
+    {% endblock content %}
+
+
+
+     

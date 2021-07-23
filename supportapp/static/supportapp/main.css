@@ -73,6 +73,69 @@ body {
     vertical-align: middle;
   }
   
+  
+
+  .issue-issue_code {
+    color: #444444;
+  }
+  
+  a.issue-issue_code:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .issue-issue_description {
+    white-space: pre-line;
+  }
+
+  
+  .issue-issue_id {
+    white-space: pre-line;
+  }
+  
+    
+  .issue-issue_code {
+    white-space: pre-line;
+  }
+
+    
+  .issue-cluster_code {
+    white-space: pre-line;
+  }
+
+    
+  .issue-center_code {
+    white-space: pre-line;
+  }
+
+    
+  .issue-cluster_code {
+    white-space: pre-line;
+  }
+  .issue-issue_date {
+    white-space: pre-line;;
+  }
+  
+  .issue-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .issue-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .issue-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  
+
+
   .account-img {
     height: 125px;
     width: 125px;

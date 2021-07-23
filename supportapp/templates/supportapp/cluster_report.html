@@ -1,0 +1,33 @@
+{% extends "supportapp/base.html" %}
+    {% load crispy_forms_tags  %}
+      {% block content %}
+      <div class="content-section">
+
+<h2> Cluster Reports </h2>
+  <p>Clusters in a Country </p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th> Cluster Code</th>
+        <th> Cluster Name</th>
+        <th> Province</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for clstr in cluster %}
+      <tr>
+            <td>{{ clstr.cluster_code }}</td>
+            <td>{{ clstr.cluster_name }}</td> 
+            <td>{{ clstr.province }}</td>
+     {% endfor %}
+    </tbody>
+  </table>
+        
+   </div>
+    {% endblock content %}
+
+
+
+     

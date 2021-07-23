@@ -1,0 +1,14 @@
+{% extends "supportapp/base.html" %}
+{% load crispy_forms_tags  %}
+{% block content %}
+     <h1> Issues </h1>
+{% for issu in issue_list %}
+<ul>
+
+<li> {{ issu }} </li>
+
+</ul>
+
+{% endfor %}
+
+{% endblock content %}
