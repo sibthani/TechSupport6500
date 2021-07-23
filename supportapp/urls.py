@@ -1,11 +1,14 @@
-from django.urls import path
-from. import views
+from django.urls import include, path
+from . import views
+from django.conf import settings 
+from django.conf.urls.static import static 
 
 urlpatterns = [
+    path('', views.index, name='index'),
     #home page
     path('home/', views.home, name='home'),
     #issue , coach, cluster, staff, center, issue_category forms
-    path('form/', views.form, name='form'),
+    
     path('coach/', views.coach, name='coach'),
     path('cluster/', views.cluster, name='cluster'),
     path('center/', views.center, name='center'),

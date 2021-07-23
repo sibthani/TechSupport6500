@@ -19,12 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', auth_views.LoginView.as_view(template_name='supportapp/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='supportapp/logout.html'), name='logout'),
-    path('', include('supportapp.urls'))
-    #path('issue-list/', views.all_issues, name='issue-list'),
+    path('', include('supportapp.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    
+    
 ]
  #Configure Admin Titles
-admin.site.site_header = "Tech Support Administration"
-admin.site.site_title = "Tech Support "
-admin.site.index_title = "Welcome to the Admin site"

@@ -61,27 +61,28 @@ def add_issue(request):
     return render(request,'supportapp/add_issue.html', context) 
 
 
-#forms for all the models
-#form for issues
-#@login_required
-def form(request):
+@login_required
+def index(request):
    # context = {}
     if request.method == 'POST':
        form = IssueForm(request.POST)
        if form.is_valid():
+          user=form.save()
           new_issue = form.save(commit=False)
           new_issue.save()
           # username = form.cleaned_data.get('username')
           #messages.success(request, f'Tech Support  Response form submitted !')
-          return redirect('form')
+          return redirect('index')
     else :
          form = IssueForm()
 
     context = {
+        'issue_cat': Issue_Catgry.objects.all(),
+        'user_details': CoachUser.objects.get(username=request.user.username),
         'form': form,
     }
   
-    return render(request, 'supportapp/form.html', context)
+    return render(request, 'supportapp/index.html', context)
 
 #coach form
 
@@ -96,6 +97,9 @@ def coach(request):
          form = CoachUserForm()
 
     context = {
+        'user_lvl': Staff.objects.all(),
+        'cluster': Cluster.objects.all(),
+        'centre': Center.objects.all(),
         'form': form,
     }
        

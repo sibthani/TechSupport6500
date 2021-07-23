@@ -1,20 +1,83 @@
 {% extends "supportapp/base.html" %}
-    {% load crispy_forms_tags  %}
-      {% block content %}
-      <div class="content-section">
-        <form method="POST" >
-            {% csrf_token %}
-            <fieldset class = form-group>
-                <legend class = "border-bottom mb-4"> Add Coach </legend>
-            {{ form|crispy }}
-            </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-infor" type="submit">Submit</button>
+{% load crispy_forms_tags %}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4"> Add Coach </legend>
+        <div id="div_id_password" class="form-group"> <label for="id_password" class=" requiredField">
+                Password<span class="asteriskField">*</span> </label>
+            <div class=""> <input type="password" name="password" maxlength="128" class="textinput textInput form-control" required="" id="id_password"> </div>
         </div>
-        </form>
-   </div>
-    {% endblock content %}
-
-
-
-     
+        <div class="form-group">
+            <div id="div_id_username" class="form-group"> <label for="id_username" class=" requiredField">
+                    Username<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="text" name="username" maxlength="12" class="textinput textInput form-control" required="" id="id_username"> </div>
+            </div>
+            <div id="div_id_email" class="form-group"> <label for="id_email" class=" requiredField">
+                    Email address<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="email" name="email" maxlength="254" class="emailinput form-control" required="" id="id_email"> </div>
+            </div>
+            <div class="form-group">
+                <div id="div_id_is_staff" class="form-check"> <input type="checkbox" name="is_staff" class="checkboxinput form-check-input" id="id_is_staff"> <label for="id_is_staff" class="form-check-label">
+                        Is staff
+                    </label> </div>
+            </div>
+            <div class="form-group">
+                <div id="div_id_is_active" class="form-check"> <input type="checkbox" name="is_active" class="checkboxinput form-check-input" id="id_is_active" checked=""> <label for="id_is_active" class="form-check-label">
+                        Is active
+                    </label> </div>
+            </div>
+            <div id="div_id_staff_code" class="form-group"> <label for="id_staff_code" class=" requiredField">
+                    Staff code<span class="asteriskField">*</span> </label>
+                <div class=""> <select name="staff_code" class="select form-control" required="" id="id_staff_code">
+                        <option value="" selected="">---------</option>
+                        {% for ul in user_lvl %}
+                        <option value="{{ ul }}">{{ ul.career_descrptn }}</option>
+                        {% endfor %}
+                    </select> </div>
+            </div>
+            <div id="div_id_first_name" class="form-group"> <label for="id_first_name" class=" requiredField">
+                    First name<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="text" name="first_name" maxlength="50" class="textinput textInput form-control" required="" id="id_first_name"> </div>
+            </div>
+            <div id="div_id_last_name" class="form-group"> <label for="id_last_name" class=" requiredField">
+                    Last name<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="text" name="last_name" maxlength="50" class="textinput textInput form-control" required="" id="id_last_name"> </div>
+            </div>
+            <div id="div_id_gender" class="form-group"> <label for="id_gender" class=" requiredField">
+                    Gender<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="text" name="gender" maxlength="6" class="textinput textInput form-control" required="" id="id_gender"> </div>
+            </div>
+            <div id="div_id_cluster_code" class="form-group"> <label for="id_cluster_code" class=" requiredField">
+                    Cluster code<span class="asteriskField">*</span> </label>
+                <div class=""> <select name="cluster_code" class="select form-control" required="" id="id_cluster_code">
+                        <option value="" selected="">---------</option>
+                        {% for cl in cluster %}
+                        <option value="{{ cl }}">{{ cl.cluster_name }}</option>
+                        {% endfor %}
+                    </select> </div>
+            </div>
+            <div id="div_id_center_code" class="form-group"> <label for="id_center_code" class=" requiredField">
+                    Center code<span class="asteriskField">*</span> </label>
+                <div class=""> <select name="center_code" class="select form-control" required="" id="id_center_code">
+                        <option value="" selected="">---------</option>
+                        {% for ct in centre %}
+                        <option value="{{ ct }}">{{ ct.center_name }}</option>
+                        {% endfor %}
+                    </select> </div>
+            </div>
+            <div id="div_id_address" class="form-group"> <label for="id_address" class=" requiredField">
+                    Address<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="text" name="address" maxlength="254" class="textinput textInput form-control" required="" id="id_address"> </div>
+            </div>
+            <div id="div_id_phone_number" class="form-group"> <label for="id_phone_number" class=" requiredField">
+                    Phone number<span class="asteriskField">*</span> </label>
+                <div class=""> <input type="number" name="phone_number" class="numberinput form-control" required="" id="id_phone_number"> </div>
+            </div>
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-outline-infor" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock content %}
