@@ -26,21 +26,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
-                    <!-- <a class="dropdown-menu" >Issues</a>
-                  <a class="dropdown-menu" ">Issues-Text-File</a>
-                  <a class="dropdown-menu" >Issues-CSV-File</a>
-                  <a class="dropdown-menu" href="{% url 'issue_pdf' %}">Issues-PDF-File</a>
- -->
-                    <li class="nav-item nav-link dropdown">
-                        <a class="nav-link nav-item dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Dropdown link
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'index' %}">Link 1</a>
-                            <a class="dropdown-item" href="{% url 'issue-text' %}">Link 2</a>
-                            <a class="dropdown-item" href="{% url 'issue_csv' %}">Link 3</a>
-                        </div>
-                    </li>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}

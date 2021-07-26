@@ -1,14 +1,42 @@
 {% extends "supportapp/base.html" %}
 {% load crispy_forms_tags  %}
 {% block content %}
-     <h1> Issues </h1>
-{% for issu in issue_list %}
-<ul>
+<h2> Issues</h2>
+<p> My Center Issues </p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Cluster</th>
+      <th>Center</th>
+      <th>Issue Code</th>
+      <th>Description</th>
+      <th>Urgent</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
 
-<li> {{ issu }} </li>
+  {% for isue in issue_list %}
+    <tr>
+          <td>{{ isue.username }}</td>
+          <td>{{ isue.cluster_code }}</td>
+          <td>{{ isue.center_code }}</td>
+          <td>{{ isue.issue_code }}</td>   
+          <td>{{ isue.issue_description }}</td>
+          <td>{{ isue.urgent }}</td>
+          <td>{{ isue.issue_date }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
 
-</ul>
+<br></br>
 
-{% endfor %}
+<div class="border-top pt=3">
+     <small class = "text-muted">
+          <a href = "{% url 'home' %}"> Add Another Issue </a>
+     </small>
 
+ </div>
 {% endblock content %}

@@ -16,9 +16,8 @@ urlpatterns = [
     path('issue_category/', views.issue_category, name='issue_category'),
     #issue page for users
     path('issue_list/', views.issue_list, name='issue_list'),
-    path('add_issue/', views.add_issue, name='add_issue'),
     # generating report by admin 
-    path('issue_text/', views.issue_text, name='issue-text'),
+    path('issue_text/', views.issue_text, name='issue_text'),
     path('issue_csv/', views.issue_csv, name='issue_csv'),
     path('issue_pdf/', views.issue_pdf, name='issue_pdf'),
     #report table for admin

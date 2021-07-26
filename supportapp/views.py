@@ -12,22 +12,6 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter 
 
-posts = [
-    {
-      'author':'sibthani',
-        'title':'Issue related to laptops',
-        'content':'laptop failed to powerup',
-        'date_posted':'july 23, 2018'
-    },
-    {
-      'author':'Bertha',
-        'title':'iplay8 pro Tablet issue',
-        'content':'Tablet is failing to charge',
-        'date_posted':'july 23, 2018'
-    }
-
-
-]
 
 @login_required
 def home(request):
@@ -52,13 +36,6 @@ def issue_list(request):
     return render(request,'supportapp/issue_list.html', context) 
 
 
-def add_issue(request):
-    
-    context = {
-        'add_issue': Issue.objects.all(),
-               }
-
-    return render(request,'supportapp/add_issue.html', context) 
 
 
 @login_required
@@ -252,15 +229,15 @@ def issue_pdf(request):
 
 
 #create loop 
-    for issue in issues: 
-        lines.append(issue.issue_id)
-        lines.append(issue.issue_code)
-        lines.append(issue.username)
-        lines.append(issue.cluster_code)
-        lines.append(issue.center_code)
-        lines.append(issue.issue_description)
-        lines.append(issue.urgent) 
-        lines.append(issue.issue_date) 
+    for isue in issues: 
+        lines.append(isue.issue_id)
+        lines.append(isue.issue_code)
+        lines.append(isue.username)
+        lines.append(isue.cluster_code)
+        lines.append(isue.center_code)
+        lines.append(isue.issue_description)
+        lines.append(isue.urgent) 
+        lines.append(isue.issue_date) 
         lines.append("==========================")
 
 
@@ -275,6 +252,7 @@ def issue_pdf(request):
     c.save()
     buf.seek(0)
     return FileResponse(buf, as_attachment = True , filename='issue.pdf')
+
 
 
 # Generating reports using csv
@@ -315,26 +293,4 @@ def issue_text(request):
     #write to file
     response.writelines(lines)
     return response
-
-
-#Generate text Files of issue List
-
-def issue_text(request):
-    response = HttpResponse(content_type ='text/plain')
-    response ['Content-Disposition'] = 'attachment; filename=issues.txt'
-    
-    #create blank list
-    lines = []  
-
-    #Designate the issues
-    issues = Issue.objects.all()
-  #loop thro and output
-    for issue in issues:
-       lines.append(f'{issue.issue_id}\n {issue.issue_code}\n{issue.username}\n{issue.cluster_code}\n{issue.center_code}{issue.issue_description}\n{issue.urgent}\n{issue.issue_date}\n\n\n')
-
-
-    #write to file
-    response.writelines(lines)
-    return response
-
 
