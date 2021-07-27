@@ -5,9 +5,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
-    #home page
-    path('home/', views.home, name='home'),
-    #issue , coach, cluster, staff, center, issue_category forms
+
+    # path('home/', views.home, name='home'),
+
     
     path('coach/', views.coach, name='coach'),
     path('cluster/', views.cluster, name='cluster'),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('staff/', views.staff, name='staff'),
     path('issue_category/', views.issue_category, name='issue_category'),
     #issue page for users
-    path('issue_list/', views.issue_list, name='issue_list'),
+    path('issue_list/', views.issuelist, name='issue_list'),
     # generating report by admin 
     path('issue_text/', views.issue_text, name='issue_text'),
     path('issue_csv/', views.issue_csv, name='issue_csv'),

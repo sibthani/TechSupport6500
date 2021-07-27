@@ -12,6 +12,9 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter 
 
+from django.db.models import Avg, Count, Min, Sum
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 @login_required
 def home(request):
@@ -26,14 +29,21 @@ def home(request):
     return render(request, 'supportapp/index.html', context)
 
 #users view
+@login_required
+def issuelist(request):
 
-def issue_list(request):
-    
-    context = {
-        'issue_list': Issue.objects.all(),
-               }
+    i_issues = Issue.objects.filter(username_id=request.user)
+    page = request.GET.get('page', 1)
 
-    return render(request,'supportapp/issue_list.html', context) 
+    paginator = Paginator(i_issues, 5)
+    try:
+        issuelist = paginator.page(page)
+    except PageNotAnInteger:
+        issuelist = paginator.page(1)
+    except EmptyPage:
+        issuelist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/issue_list.html', { 'issuelist' : issuelist }) 
 
 
 
@@ -264,7 +274,7 @@ def issue_csv(request):
     writer = csv.writer(response)
 
     #Designate the issues
-    issues = Issue.objects.all()
+    issues = Issue.objects.filter(username_id=request.user)
 
     #add columns to csv file
     writer.writerow(['Issue ID,', 'Issue_code', 'username', 'Cluster Code','Center Code','Issue Description', 'Urgenancy', ' Date Posted'])
