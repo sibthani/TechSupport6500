@@ -1,0 +1,32 @@
+{% extends "supportapp/base.html" %}
+    {% load crispy_forms_tags  %}
+      {% block content %}
+      <div class="content-section">
+
+<h2> Staff List </h2>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th> Staff Code </th>
+        <th> Description </th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for stf in staff_reprt %}
+      <tr>
+            <td>{{ stf.staff_code }}</td>
+            <td>{{ stf.career_descrptn }}</td>    
+      </tr>
+     {% endfor %}
+    </tbody>
+  </table>
+        
+   </div>
+    {% endblock content %}
+
+
+
+     

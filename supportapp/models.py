@@ -85,6 +85,7 @@ class Issue(models.Model):
     center_code = models.ForeignKey("Center", on_delete=models.CASCADE, null=True)
     issue_description = models.TextField(max_length=150)
     urgent = models.CharField(max_length=10)
+    reported_to = models.CharField(max_length=30)
     issue_date = models.DateField(auto_now_add=True)
     def __str__(self):
         return f"{self.issue_code}"

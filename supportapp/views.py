@@ -22,6 +22,7 @@ def home(request):
     context = {
         'sys_user': CoachUser.objects.all(),
         'coach_issues': Issue.objects.all(),
+
       # 'posts': posts
        
             }
@@ -31,8 +32,15 @@ def home(request):
 #users view
 @login_required
 def issuelist(request):
+    sys_user = CoachUser.objects.filter(username="Sibthani")
 
-    i_issues = Issue.objects.filter(username_id=request.user)
+    if sys_user == "Sibthani":
+        i_issues = Issue.objects.all()
+
+    else:
+
+        i_issues = Issue.objects.filter(username_id=request.user)
+
     page = request.GET.get('page', 1)
 
     paginator = Paginator(i_issues, 5)
@@ -72,7 +80,7 @@ def index(request):
     return render(request, 'supportapp/index.html', context)
 
 #coach form
-
+@login_required
 def coach(request):
     if request.method == 'POST':
        form = CoachUserForm(request.POST)
@@ -94,6 +102,7 @@ def coach(request):
     return render(request, 'supportapp/coach.html', context)
 
 #cluster form
+@login_required
 def cluster(request):
    # context = {}
     if request.method == 'POST':
@@ -114,7 +123,7 @@ def cluster(request):
     return render(request, 'supportapp/cluster.html',context )
 
 #add center form
-
+@login_required
 def center(request):
    # context = {}
     if request.method == 'POST':
@@ -135,6 +144,7 @@ def center(request):
     return render(request, 'supportapp/center.html', context )
 
 #Add staff from
+@login_required
 def staff(request):
    # context = {}
     if request.method == 'POST':
@@ -156,6 +166,7 @@ def staff(request):
 
 
 #issue Cateogry form
+@login_required
 def issue_category(request):
     if request.method == 'POST':
        form = Issue_CatgryForm(request.POST)
@@ -177,16 +188,98 @@ def issue_category(request):
 #Generating reports for selected tables
 #reports for issues
 
-def issuesrpt(request):
+#def issuesrpt(request):
 
-    context = {
-        'centr_issue': Issue.objects.all(),
-    }
+  #  context = {
+     #   'centr_issue': Issue.objects.all(),
+   # }
 
-    return render(request,'supportapp/issue-report.html', context)
+   # return render(request,'supportapp/issue-report.html', context)
+"""
+@login_required
+def clusterlist(request):
+
+    c_cluster = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(c_cluster, 5)
+    try:
+        clusterlist = paginator.page(page)
+    except PageNotAnInteger:
+        clusterlist = paginator.page(1)
+    except EmptyPage:
+        clusterlist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/cluster_report.html', { 'clusterlist' : clusterlist })
+
+
+@login_required
+def centerlist(request):
+
+    c_center = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(c_center, 5)
+    try:
+        centerlist = paginator.page(page)
+    except PageNotAnInteger:
+        centerlist = paginator.page(1)
+    except EmptyPage:
+        centerlist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/center_report.html', { 'centerlist' : centerlist })
+
+@login_required
+def coachlist(request):
+
+    c_coach = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(c_coach, 5)
+    try:
+        coachlist = paginator.page(page)
+    except PageNotAnInteger:
+        coachlist = paginator.page(1)
+    except EmptyPage:
+        coachlist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/coach_report.html', { 'coachlist' : coachlist })
+
+@login_required
+def stafflist(request):
+
+    s_staff = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(s_staff, 5)
+    try:
+        stafflist = paginator.page(page)
+    except PageNotAnInteger:
+        stafflist = paginator.page(1)
+    except EmptyPage:
+        stafflist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/stafflist_report.html', { 'stafflist' : stafflist })
+
+def issuecat(request):   
+     
+    i_cat = Issue_Catgry.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(i_cat, 5)
+    try:
+        issuecat = paginator.page(page)
+    except PageNotAnInteger:
+        issuecat = paginator.page(1)
+    except EmptyPage:
+        issuecat = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/issue_cat_report.html', { 'issuecat' : issuecat }) 
+
+"""
 
 #reports for coachuser
-
+@login_required
 def coachrpt(request):
 
     context = {
@@ -198,6 +291,7 @@ def coachrpt(request):
 
 
 #reports for clusters
+@login_required
 def clusterrpt(request):
 
     context = {
@@ -209,63 +303,42 @@ def clusterrpt(request):
 
 
 #reports for centers
+@login_required
 def centerrpt(request):
 
     context = {
         'center': Center.objects.all(),
     }
 
-    return render(request,'supportapp/center_report.html', context)    
-         
+    return render(request,'supportapp/center_report.html', context)  
 
-#Generating reports for issue using diffirent formats csv, text and pdf
+@login_required
+def issuecat(request):
 
-#Generate pdf file for issues
-def issue_pdf(request):
-    #Create a byte stream buffer
-    buf = io.BytesIO()
-    #Create canvas
-    c = canvas.Canvas(buf, pagesize=letter , bottomup=0)
-    #Create text object
-    textob = c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 14)
+    context = {
+        'issucat': Issue_Catgry.objects.all(),
+    }
 
-#Designate the issues
-    issues = Issue.objects.all()
+    return render(request,'supportapp/issue_cat_report.html', context)
 
-    #create blank list
-    lines = []  
+@login_required
+def staff_report(request):
+
+    context = {
+        'staff_reprt': Staff.objects.all(),
+    }
+
+    return render(request,'supportapp/stafflist_report.html', context)
 
 
-#create loop 
-    for isue in issues: 
-        lines.append(isue.issue_id)
-        lines.append(isue.issue_code)
-        lines.append(isue.username)
-        lines.append(isue.cluster_code)
-        lines.append(isue.center_code)
-        lines.append(isue.issue_description)
-        lines.append(isue.urgent) 
-        lines.append(isue.issue_date) 
-        lines.append("==========================")
 
+ 
 
-    for line in lines: 
-       textob.textLine(line)
-    
-
-
-    #finish up
-    c.drawText(textob)
-    c.showPage()
-    c.save()
-    buf.seek(0)
-    return FileResponse(buf, as_attachment = True , filename='issue.pdf')
-
+#Generating reports for issue using diffirent formats csv
 
 
 # Generating reports using csv
+@login_required
 def issue_csv(request):
     response = HttpResponse(content_type ='text/csv')
     response ['Content-Disposition'] = 'attachment; filename=issues.csv'
@@ -283,24 +356,5 @@ def issue_csv(request):
        writer.writerow([issue.issue_id, issue.issue_code , issue.username , issue.cluster_code , issue.center_code , issue.issue_description , issue.urgent , issue.issue_date])
 
 
-    return response
-
-
-
-def issue_text(request):
-    response = HttpResponse(content_type ='text/plain')
-    response ['Content-Disposition'] = 'attachment; filename=issues.txt'
-    
-    #create blank list
-    lines = []  
-
-    #Designate the issues
-    issues = Issue.objects.all()
-  #loop thro and output
-    for issue in issues:
-       lines.append(f'{issue.issue_id}\n {issue.issue_code}\n{issue.username}\n{issue.cluster_code}\n{issue.center_code}{issue.issue_description}\n{issue.urgent}\n{issue.issue_date}\n\n\n')
-
-    #write to file
-    response.writelines(lines)
     return response
 
