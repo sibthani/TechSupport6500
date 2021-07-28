@@ -3,23 +3,23 @@
       {% block content %}
       <div class="content-section">
 
-<h2> Cluster Reports </h2>
+<h2> Issue Category </h2>
+
+
   <table class="table table-striped">
     <thead>
       <tr>
-        <th> Cluster Code</th>
-        <th> Cluster Name</th>
-        <th> Province</th>
-        
+        <th> Issue Code </th>
+        <th> Description </th>
       </tr>
     </thead>
     <tbody>
 
-    {% for clstr in cluster %}
+    {% for cat in issucat %}
       <tr>
-            <td>{{ clstr.cluster_code }}</td>
-            <td>{{ clstr.cluster_name }}</td> 
-            <td>{{ clstr.province }}</td>
+            <td>{{ cat.issue_code }}</td>
+            <td>{{ cat.description }}</td>    
+      </tr>
      {% endfor %}
     </tbody>
   </table>

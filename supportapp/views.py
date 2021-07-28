@@ -12,6 +12,9 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter 
 
+from django.db.models import Avg, Count, Min, Sum
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 @login_required
 def home(request):
@@ -26,14 +29,21 @@ def home(request):
     return render(request, 'supportapp/index.html', context)
 
 #users view
+@login_required
+def issuelist(request):
 
-def issue_list(request):
-    
-    context = {
-        'issue_list': Issue.objects.all(),
-               }
+    i_issues = Issue.objects.filter(username_id=request.user)
+    page = request.GET.get('page', 1)
 
-    return render(request,'supportapp/issue_list.html', context) 
+    paginator = Paginator(i_issues, 5)
+    try:
+        issuelist = paginator.page(page)
+    except PageNotAnInteger:
+        issuelist = paginator.page(1)
+    except EmptyPage:
+        issuelist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/issue_list.html', { 'issuelist' : issuelist }) 
 
 
 
@@ -167,13 +177,95 @@ def issue_category(request):
 #Generating reports for selected tables
 #reports for issues
 
-def issuesrpt(request):
+#def issuesrpt(request):
 
-    context = {
-        'centr_issue': Issue.objects.all(),
-    }
+  #  context = {
+     #   'centr_issue': Issue.objects.all(),
+   # }
 
-    return render(request,'supportapp/issue-report.html', context)
+   # return render(request,'supportapp/issue-report.html', context)
+"""
+@login_required
+def clusterlist(request):
+
+    c_cluster = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(c_cluster, 5)
+    try:
+        clusterlist = paginator.page(page)
+    except PageNotAnInteger:
+        clusterlist = paginator.page(1)
+    except EmptyPage:
+        clusterlist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/cluster_report.html', { 'clusterlist' : clusterlist })
+
+
+@login_required
+def centerlist(request):
+
+    c_center = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(c_center, 5)
+    try:
+        centerlist = paginator.page(page)
+    except PageNotAnInteger:
+        centerlist = paginator.page(1)
+    except EmptyPage:
+        centerlist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/center_report.html', { 'centerlist' : centerlist })
+
+@login_required
+def coachlist(request):
+
+    c_coach = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(c_coach, 5)
+    try:
+        coachlist = paginator.page(page)
+    except PageNotAnInteger:
+        coachlist = paginator.page(1)
+    except EmptyPage:
+        coachlist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/coach_report.html', { 'coachlist' : coachlist })
+
+@login_required
+def stafflist(request):
+
+    s_staff = CoachUser.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(s_staff, 5)
+    try:
+        stafflist = paginator.page(page)
+    except PageNotAnInteger:
+        stafflist = paginator.page(1)
+    except EmptyPage:
+        stafflist = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/stafflist_report.html', { 'stafflist' : stafflist })
+
+def issuecat(request):   
+     
+    i_cat = Issue_Catgry.objects.all(),
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(i_cat, 5)
+    try:
+        issuecat = paginator.page(page)
+    except PageNotAnInteger:
+        issuecat = paginator.page(1)
+    except EmptyPage:
+        issuecat = paginator.page(paginator.num_pages)
+
+    return render(request,'supportapp/issue_cat_report.html', { 'issuecat' : issuecat }) 
+
+"""
 
 #reports for coachuser
 
@@ -205,8 +297,29 @@ def centerrpt(request):
         'center': Center.objects.all(),
     }
 
-    return render(request,'supportapp/center_report.html', context)    
-         
+    return render(request,'supportapp/center_report.html', context)  
+
+
+def issuecat(request):
+
+    context = {
+        'issucat': Issue_Catgry.objects.all(),
+    }
+
+    return render(request,'supportapp/issue_cat_report.html', context)
+
+
+def staff_report(request):
+
+    context = {
+        'staff_reprt': Staff.objects.all(),
+    }
+
+    return render(request,'supportapp/stafflist_report.html', context)
+
+
+
+ 
 
 #Generating reports for issue using diffirent formats csv, text and pdf
 
@@ -264,7 +377,7 @@ def issue_csv(request):
     writer = csv.writer(response)
 
     #Designate the issues
-    issues = Issue.objects.all()
+    issues = Issue.objects.filter(username_id=request.user)
 
     #add columns to csv file
     writer.writerow(['Issue ID,', 'Issue_code', 'username', 'Cluster Code','Center Code','Issue Description', 'Urgenancy', ' Date Posted'])
