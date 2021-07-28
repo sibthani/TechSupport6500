@@ -25,12 +25,15 @@
                 
                 <div class="dropdown">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                      Dropdown button
+                      Reports
                     </button>
                     <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Link 1</a>
-                      <a class="dropdown-item" href="#">Link 2</a>
-                      <a class="dropdown-item" href="#">Link 3</a>
+                      <a class="dropdown-item" href="{% url 'issue_list' %}">Issues</a>
+                      <a class="dropdown-item" href="{% url 'coach_report' %}">Coaches</a>
+                      <a class="dropdown-item" href="{% url 'staff_list' %}">Staff</a>
+                      <a class="dropdown-item" href="{% url 'center_report' %}">Center</a>
+                      <a class="dropdown-item" href="{% url 'cluster_report' %}">Cluster</a>
+                      <a class="dropdown-item" href="{% url 'issue_cat_report' %}">Issue_Category</a>
                     </div>
                   </div>
                 
