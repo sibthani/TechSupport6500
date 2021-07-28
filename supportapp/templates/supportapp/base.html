@@ -22,14 +22,37 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-4" href="{% url 'index' %}">Tech Support</a>
-                
-
-                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <!-- Navbar Right Side -->
+                    <li class="nav-item dropdown navbar-collapse">
+                        <a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Configurations
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="">Career</a>
+                            <a class="dropdown-item" href="">Center</a>
+                            <a class="dropdown-item" href="">Country</a>
+                            <a class="dropdown-item" href="">Cluster</a>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item dropdown navbar-collapse">
+                        <a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Reports
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'center_report' %}">Centers</a>
+                            <a class="dropdown-item" href="{% url 'cluster_report' %}">Clusters</a>
+                            <a class="dropdown-item" href="{% url 'issue_list' %}">Issues</a>
+                            <a class="dropdown-item" href="{% url 'coach_report' %}">Staff</a>
+                        </div>
+                    </li>
+
+
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'login' %}">Logout</a>

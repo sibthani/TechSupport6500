@@ -23,6 +23,6 @@ urlpatterns = [
     #report table for admin
     path('issue-report/',views.issuesrpt, name='issue-report'),
     path('center_report/', views.centerrpt, name='center_report'),
-    path('coach_report/', views.coachrpt, name='cluster_report'),
-    path('cluster_report/', views.clusterrpt, name='coach_report'),
+    path('coach_report/', views.coachrpt, name='coach_report'),
+    path('cluster_report/', views.clusterrpt, name='cluster_report'),
 ]
