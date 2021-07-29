@@ -12,6 +12,7 @@
             <th>Issue Code</th>
             <th>Description</th>
             <th>Urgent</th>
+            <th>Reported To </th>
             <th>Date</th>
         </tr>
     </thead>
@@ -24,6 +25,7 @@
             <td>{{ isue.issue_code }}</td>
             <td>{{ isue.issue_description }}</td>
             <td>{{ isue.urgent }}</td>
+            <td>{{ isue.reported_to }}</td>
             <td>{{ isue.issue_date }}</td>
         </tr>
         {% endfor %}
